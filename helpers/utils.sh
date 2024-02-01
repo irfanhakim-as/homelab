@@ -28,15 +28,15 @@ function print_help() {
 while [[ ${#} -gt 0 ]]; do
     case "${1}" in
         -i|--input)
-            ${SOURCE_DIR}/input.sh "${@:2}"
+            ${SOURCE_DIR}/../utils/input.sh "${@:2}"
             shift
             ;;
         -s|--sysfetch)
-            ${SOURCE_DIR}/sysfetch.sh "${@:2}"
+            ${SOURCE_DIR}/../utils/sysfetch.sh "${@:2}"
             shift
             ;;
         -t|--tpl)
-            ${SOURCE_DIR}/tpl.sh "${@:2}"
+            ${SOURCE_DIR}/../utils/tpl.sh "${@:2}"
             shift
             ;;
         -h|--help)
