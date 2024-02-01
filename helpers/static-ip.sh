@@ -34,7 +34,6 @@ function set_static_ip() {
 
         # get network config values from user
         required_variables=(
-            "NETWORK_INTERFACE=ens192"
             "IPADDR="
             "GATEWAY="
             "DNS1=1.1.1.1"
@@ -43,6 +42,9 @@ function set_static_ip() {
 
         # ubuntu
         if [ "${DISTRO}" == "ubuntu" ]; then
+            required_variables+=(
+                "NETWORK_INTERFACE=ens160"
+            )
             # get values from user
             ${SOURCE_DIR}/utils.sh --input --get-user-input "${required_variables[@]}"
             ${SOURCE_DIR}/utils.sh --input --check-env "${required_variables[@]}"
@@ -62,6 +64,7 @@ function set_static_ip() {
         # debian
         elif [ "${DISTRO}" == "debian" ]; then
             required_variables+=(
+                "NETWORK_INTERFACE=ens192"
                 "NETMASK=255.255.255.0"
             )
             # get values from user
@@ -83,6 +86,7 @@ function set_static_ip() {
         # rhel
         elif [ "${FAMILY}" == "rhel" ]; then
             required_variables+=(
+                "NETWORK_INTERFACE=ens192"
                 "BOOTPROTO=none"
                 "IPV6INIT=no"
                 "IPV6_AUTOCONF=no"
