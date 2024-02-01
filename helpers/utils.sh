@@ -29,20 +29,26 @@ while [[ ${#} -gt 0 ]]; do
     case "${1}" in
         -i|--input)
             ${SOURCE_DIR}/../utils/input.sh "${@:2}"
+            status="${?}"
             shift
             ;;
         -s|--sysfetch)
             ${SOURCE_DIR}/../utils/sysfetch.sh "${@:2}"
+            status="${?}"
             shift
             ;;
         -t|--tpl)
             ${SOURCE_DIR}/../utils/tpl.sh "${@:2}"
+            status="${?}"
             shift
             ;;
         -h|--help)
             print_help
+            status="${?}"
             shift
             ;;
     esac
     shift
 done
+
+exit ${status}

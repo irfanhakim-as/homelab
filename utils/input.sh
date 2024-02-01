@@ -123,6 +123,7 @@ while [[ ${#} -gt 0 ]]; do
                 exit 1
             fi
             check_env "${@:2}"
+            status="${?}"
             shift
             ;;
         -g|--get-user-input)
@@ -131,6 +132,7 @@ while [[ ${#} -gt 0 ]]; do
                 exit 1
             fi
             get_user_input "${@:2}"
+            status="${?}"
             shift
             ;;
         -r|--read-value-from_file)
@@ -143,6 +145,7 @@ while [[ ${#} -gt 0 ]]; do
                 exit 1
             fi
             read_value_from_file "${2}" "${3}"
+            status="${?}"
             shift 2
             ;;
         -u|--update-value-in-file)
@@ -159,10 +162,12 @@ while [[ ${#} -gt 0 ]]; do
                 exit 1
             fi
             update_value_in_file "${2}" "${3}" "${4}"
+            status="${?}"
             shift 3
             ;;
         -h|--help)
             print_help
+            status="${?}"
             shift
             ;;
         # *)
@@ -172,3 +177,5 @@ while [[ ${#} -gt 0 ]]; do
     esac
     shift
 done
+
+exit ${status}
