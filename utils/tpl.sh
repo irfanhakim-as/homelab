@@ -31,7 +31,7 @@ function interpret_tpl() {
     # get template file content
     tpl_content="$(cat "${tpl_file}")"
     # replace placeholders denote by {{}} with values
-    for placeholder in $(echo "${tpl_content}" | grep -o "{{.*}}"); do
+    for placeholder in $(echo "${tpl_content}" | grep -o -P "{{.*?}}"); do
         # remove {{ and }} from placeholder
         placeholder="$(echo "${placeholder}" | sed -e 's/^{{//' -e 's/}}$//')"
         # get value from values passed to the function
