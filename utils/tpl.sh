@@ -37,7 +37,6 @@ function interpret_tpl() {
         # get value from values passed to the function
         # value="$(echo "${@:2}" | grep -o "${placeholder}=[^ ]*" | sed -e "s/${placeholder}=//")"
         value="$(${SOURCE_DIR}/../helpers/utils.sh --input --read-value-from_file "${value_file}" "${placeholder}")"
-        echo "${value}"
         # replace placeholder with value if value is not empty
         if [ "${value}" ]; then
             tpl_content="$(echo "${tpl_content}" | sed -e "s/{{${placeholder}}}/${value}/")"
