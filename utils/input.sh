@@ -33,7 +33,7 @@ function check_env() {
         # if [ -z "${!var}" ]; then
         if [ -z "$(read_value_from_file "values.txt" "${var}")" ]; then
             echo "ERROR: ${var} has not been set"
-            exit 1
+            return 1
         else
             # echo "${var} = \"${!var}\""
             echo "${var} = \""$(read_value_from_file "values.txt" "${var}")"\""
@@ -42,9 +42,9 @@ function check_env() {
     # check if user would like to continue with all values
     read -p "Would you like to continue with the above values? [y/N]: " -n 1 -r; echo
     if [[ ! ${REPLY} =~ ^[Yy]$ ]]; then
-        exit 1
+        return 1
     else
-        exit 0
+        return 0
     fi
 }
 
