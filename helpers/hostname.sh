@@ -65,8 +65,12 @@ function set_hostname() {
 
         # ubuntu or debian or rhel
         if [ "${DISTRO}" == "ubuntu" ] || [ "${DISTRO}" == "debian" ] || [ "${FAMILY}" == "rhel" ]; then
+            DISTRO_ID="${DISTRO}"
+            if [ "${FAMILY}" == "rhel" ]; then
+                DISTRO_ID="${FAMILY}"
+            fi
             # copy hosts config template to /tmp
-            cp -f "${SOURCE_DIR}/../templates/${DISTRO}-hosts.tpl" "/tmp/hosts.tpl"
+            cp -f "${SOURCE_DIR}/../templates/${DISTRO_ID}-hosts.tpl" "/tmp/hosts.tpl"
             # interpret hosts config template
             ${SOURCE_DIR}/utils.sh --tpl --interpret "/tmp/hosts.tpl" "values.txt"
             # copy hosts config to /etc/hosts
