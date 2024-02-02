@@ -61,7 +61,7 @@ function set_hostname() {
         # update hostname
         DOMAIN="$(${SOURCE_DIR}/utils.sh --input --read-value-from_file "values.txt" "DOMAIN")"
         LOCAL_HOSTNAME="$(${SOURCE_DIR}/utils.sh --input --read-value-from_file "values.txt" "LOCAL_HOSTNAME")"
-        hostnamectl set-hostname "${LOCAL_HOSTNAME}.${DOMAIN}"
+        sudo hostnamectl set-hostname "${LOCAL_HOSTNAME}.${DOMAIN}"
 
         # ubuntu or debian
         if [ "${DISTRO}" == "ubuntu" ] || [ "${DISTRO}" == "debian" ]; then
