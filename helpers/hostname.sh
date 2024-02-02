@@ -40,7 +40,7 @@ function set_hostname() {
 
         # get network config values from user
         required_variables=(
-            "HOSTNAME="
+            "LOCAL_HOSTNAME="
             "DOMAIN="
         )
 
@@ -59,7 +59,7 @@ function set_hostname() {
         fi
 
         # update hostname
-        hostnamectl set-hostname "${HOSTNAME}.${DOMAIN}"
+        hostnamectl set-hostname "${LOCAL_HOSTNAME}.${DOMAIN}"
 
         # ubuntu or debian
         if [ "${DISTRO}" == "ubuntu" ] || [ "${DISTRO}" == "debian" ]; then

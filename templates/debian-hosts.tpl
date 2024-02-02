@@ -1,5 +1,5 @@
 127.0.0.1       localhost
-127.0.1.1       {{HOSTNAME}}.{{DOMAIN}}   {{HOSTNAME}}
+127.0.1.1       {{LOCAL_HOSTNAME}}.{{DOMAIN}}   {{LOCAL_HOSTNAME}}
 
 # The following lines are desirable for IPv6 capable hosts
 ::1     localhost ip6-localhost ip6-loopback
