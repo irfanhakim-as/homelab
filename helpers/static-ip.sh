@@ -53,6 +53,10 @@ function set_static_ip() {
                 echo "ERROR: Values provided by user were not confirmed!"
                 exit "${status}"
             fi
+            # backup initial netplan config
+            if [ ! -f "/etc/netplan/00-installer-config.yaml.bak" ]; then
+                sudo cp -f "/etc/netplan/00-installer-config.yaml" "/etc/netplan/00-installer-config.yaml.bak"
+            fi
             # copy netplan config template to /tmp
             cp -f "${SOURCE_DIR}/../templates/00-installer-config.yaml.tpl" "/tmp/00-installer-config.yaml.tpl"
             # interpret netplan config template
@@ -74,6 +78,10 @@ function set_static_ip() {
             if [ "${status}" -ne 0 ]; then
                 echo "ERROR: Values provided by user were not confirmed!"
                 exit "${status}"
+            fi
+            # backup initial interfaces config
+            if [ ! -f "/etc/network/interfaces.bak" ]; then
+                sudo cp -f "/etc/network/interfaces" "/etc/network/interfaces.bak"
             fi
             # copy interfaces config template to /tmp
             cp -f "${SOURCE_DIR}/../templates/interfaces.tpl" "/tmp/interfaces.tpl"
@@ -102,6 +110,10 @@ function set_static_ip() {
                 exit "${status}"
             fi
             NETWORK_INTERFACE="$(${SOURCE_DIR}/utils.sh --input --read-value-from_file "values.txt" "NETWORK_INTERFACE")"
+            # backup initial ifcfg config
+            if [ ! -f "/etc/sysconfig/network-scripts/ifcfg-${NETWORK_INTERFACE}.bak" ]; then
+                sudo cp -f "/etc/sysconfig/network-scripts/ifcfg-${NETWORK_INTERFACE}" "/etc/sysconfig/network-scripts/ifcfg-${NETWORK_INTERFACE}.bak"
+            fi
             # copy current ifcfg config to /tmp
             cp -f "/etc/sysconfig/network-scripts/ifcfg-${NETWORK_INTERFACE}" "/tmp/ifcfg-${NETWORK_INTERFACE}.tpl"
             # cp -f "${SOURCE_DIR}/../templates/ifcfg-${NETWORK_INTERFACE}.tpl" "/tmp/ifcfg-${NETWORK_INTERFACE}.tpl"
