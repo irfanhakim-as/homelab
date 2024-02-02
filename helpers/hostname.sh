@@ -63,8 +63,8 @@ function set_hostname() {
         LOCAL_HOSTNAME="$(${SOURCE_DIR}/utils.sh --input --read-value-from_file "values.txt" "LOCAL_HOSTNAME")"
         sudo hostnamectl set-hostname "${LOCAL_HOSTNAME}.${DOMAIN}"
 
-        # ubuntu or debian
-        if [ "${DISTRO}" == "ubuntu" ] || [ "${DISTRO}" == "debian" ]; then
+        # ubuntu or debian or rhel
+        if [ "${DISTRO}" == "ubuntu" ] || [ "${DISTRO}" == "debian" ] || [ "${FAMILY}" == "rhel" ]; then
             # copy hosts config template to /tmp
             cp -f "${SOURCE_DIR}/../templates/${DISTRO}-hosts.tpl" "/tmp/hosts.tpl"
             # interpret hosts config template
