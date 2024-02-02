@@ -40,8 +40,8 @@ function set_hostname() {
 
         # get network config values from user
         required_variables=(
-            "LOCAL_HOSTNAME="
             "DOMAIN="
+            "LOCAL_HOSTNAME="
         )
 
         # get values from user
