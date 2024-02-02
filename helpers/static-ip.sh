@@ -125,8 +125,8 @@ function set_static_ip() {
             done
             # copy ifcfg config to /etc/sysconfig/network-scripts
             sudo cp -f "/tmp/ifcfg-${NETWORK_INTERFACE}.tpl" "/etc/sysconfig/network-scripts/ifcfg-${NETWORK_INTERFACE}"
-            # restart networking service
-            sudo systemctl restart network.service
+            # restart NetworkManager service
+            sudo systemctl restart NetworkManager
         else
             echo "Distribution ${DISTRO} is not supported."
             exit 1
